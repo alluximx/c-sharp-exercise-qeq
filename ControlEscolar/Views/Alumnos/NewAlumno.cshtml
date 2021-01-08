@@ -1,0 +1,81 @@
+﻿@model ControlEscolar.Models.AlumnoModel
+
+@{
+    ViewBag.Title = "NewAlumno";
+}
+
+<h2>Ingresar nuevo alumno</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <form>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.Nombre, htmlAttributes: new { @id = "nombre", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.ApellidoPaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.ApellidoPaterno, htmlAttributes: new { @id = "apellidoPaterno", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ApellidoPaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.ApellidoMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.ApellidoMaterno, htmlAttributes: new { @id = "apellidoMaterno", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ApellidoMaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(d => d.Contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.Contrasenia, htmlAttributes: new { @id = "contrasenia", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Contrasenia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input type="button" value="Guardar" onclick="Insert()" class="btn btn-primary"/>
+
+    </form>
+
+    <script>
+    var url = "@Url.Content("~/Alumnos/SaveAlumno")";
+    function Insert() {
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({
+                Nombre: document.getElementById("nombre").value,
+                ApellidoPaterno: document.getElementById("apellidoPaterno").value,
+                ApellidoMaterno: document.getElementById("apellidoMaterno").value,
+                Contrasenia: document.getElementById("contrasenia").value
+            }),
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            }
+        }).then((res)=>{
+            if (res.ok) {
+                return res.text()
+            } else {
+                alert("Error al ejecutar")
+            }
+        }).then((data)=>{
+            if (data != "1") {
+                alert(data)
+            } else {
+                document.location.href= "@Url.Content("~/Alumnos")"
+            }
+        })
+    }
+    </script>
+</body>
+</html>
