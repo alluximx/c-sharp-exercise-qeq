@@ -10,8 +10,8 @@ namespace ControlEscolar.Interfaces
 {
     interface IMateria
     {
-        void InsertMateria(MateriaModel mat);
-        void UpdateMateria(MateriaModel mat);
+        void InsertMateria(string nombre, decimal costo);
+        void UpdateMateria(int idMateria, string nombre, decimal costo);
         void DeleteMateria(int idMateria);
         DataSet GetMaterias();
         MateriaModel GetMateriaId(int idMateria);

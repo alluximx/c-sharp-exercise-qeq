@@ -13,7 +13,8 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
-    <form>
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(d => d.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -21,6 +22,7 @@
                 @Html.ValidationMessageFor(d => d.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(d => d.ApellidoPaterno, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -28,6 +30,7 @@
                 @Html.ValidationMessageFor(d => d.ApellidoPaterno, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(d => d.ApellidoMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -35,17 +38,18 @@
                 @Html.ValidationMessageFor(d => d.ApellidoMaterno, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(d => d.Contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(d => d.Contrasenia, htmlAttributes: new { @id = "contrasenia", @class = "form-control" })
+                @Html.TextBoxFor(d => d.Contrasenia, htmlAttributes: new { @type = "password", @id = "contrasenia", @class = "form-control" })
                 @Html.ValidationMessageFor(d => d.Contrasenia, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <input type="button" value="Guardar" onclick="Insert()" class="btn btn-primary"/>
+        <input type="submit" value="Guardar" onclick="Insert()" class="btn btn-primary" />
 
-    </form>
+    </div>
 
     <script>
     var url = "@Url.Content("~/Alumnos/SaveAlumno")";

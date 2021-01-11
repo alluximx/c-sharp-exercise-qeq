@@ -120,12 +120,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="DAL\AlumnosDAL.cs" />
     <Compile Include="DAL\Encrypt.cs" />
     <Compile Include="DAL\MateriasDAL.cs" />
+    <Compile Include="Filters\VerificarSesion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.datetimepicker.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -180,10 +184,17 @@
     <Content Include="Views\Alumnos\ListAlumnos.cshtml" />
     <Content Include="Views\Alumnos\NewAlumno.cshtml" />
     <Content Include="Views\Alumnos\Edit.cshtml" />
+    <Content Include="Views\Materia\ListMaterias.cshtml" />
+    <Content Include="Views\Materia\Index.cshtml" />
+    <Content Include="Views\Materia\NewMateria.cshtml" />
+    <Content Include="Views\Materia\Edit.cshtml" />
+    <Content Include="Views\Acceso\Login.cshtml" />
+    <Content Include="Views\Inscripcion\Index.cshtml" />
+    <Content Include="Views\Inscripcion\Inscripcion.cshtml" />
+    <Content Include="Views\Inscripcion\ListMateriasByAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Materia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

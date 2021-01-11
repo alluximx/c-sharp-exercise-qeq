@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+    List<SelectListItem> listaMaterias = (List<SelectListItem>)ViewBag.lista;
+    string Nombre = ViewBag.Nombre;
+}
+
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Alumno: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label(Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.Label("Materia: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownList("materia", listaMaterias, "Selecciona una materia",  htmlAttributes: new { @id = "materia", @class = "form-control" })
+            </div>
+        </div>
+
+        <input type="button" value="Inscribir" onclick="SaveInscripcion()" class="btn btn-primary" />
+
+    </div>
+
+</body>
+</html>

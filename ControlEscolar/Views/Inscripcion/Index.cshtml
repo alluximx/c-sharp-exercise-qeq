@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="selectList">
+
+</div>
+<br />
+<div id="materiasByAlumno">
+
+</div>
+
+<script>
+
+    dataUrl = "@Url.Content("~/Inscripcion/Inscripcion")";
+    urlIns = "@Url.Content("~/Inscripcion/SaveInscripcion")";
+    materiasUrl = "@Url.Content("~/Inscripcion/ListMateriasByAlumno")";
+    delUrl = "@Url.Content("~/Inscripcion/DeleteInscripcion")";
+
+    GetDataToSelect();
+    GetMateriasByAlumno();
+
+
+    function GetDataToSelect() {
+        fetch(dataUrl)
+            .then((res) => {
+                return res.text();
+            })
+            .then((data) => {
+                document.getElementById("selectList").innerHTML = data;
+            });
+    }
+
+    function SaveInscripcion() {
+        fetch(urlIns, {
+            method: "POST",
+            body: JSON.stringify({
+                idMateria: document.getElementById("materia").value
+            }),
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            }
+        }).then((res)=>{
+            if (res.ok) {
+                return res.text()
+            } else {
+                alert("Error al ejecutar")
+            }
+        }).then((data)=>{
+            if (data != "1") {
+                alert(data)
+            } else {
+                document.location.href= "@Url.Content("~/Inscripcion")"
+            }
+        })
+    }
+
+    function GetMateriasByAlumno() {
+        fetch(materiasUrl)
+            .then((res) => {
+                return res.text();
+            })
+            .then((data) => {
+                document.getElementById("materiasByAlumno").innerHTML = data;
+            });
+    }
+
+    function DeleteMateria(id) {
+        fetch(delUrl, {
+            method: "POST",
+            body: JSON.stringify({
+                idMateria: id,
+            }),
+            headers: {
+                'Accept': "application/json",
+                'Content-Type': "application/json"
+            }
+        }).then((res)=>{
+            if (res.ok) {
+                return res.text()
+            } else {
+                alert("Error al ejecutar")
+            }
+        }).then((data)=>{
+            if (data != "1") {
+                alert(data)
+            } else {
+                document.location.href= "@Url.Content("~/Inscripcion")"
+            }
+        })
+    }
+</script>

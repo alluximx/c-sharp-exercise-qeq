@@ -2,33 +2,34 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <br />
-<input type="button" value="Nuevo Alumno" onclick="document.location.href='@Url.Content("~/Alumnos/NewAlumno")'" class="btn btn-primary"/>
+<input type="button" value="Nueva Materia" onclick="document.location.href='@Url.Content("~/Materia/NewMateria")'" class="btn btn-primary" />
 <br />
 
-<div id="List">
+<div id="ListM">
 
 </div>
 
 <script>
-    urlGet = "@Url.Content("~/Alumnos/ListAlumnos")";
+    urlGetM = "@Url.Content("~/Materia/ListMaterias")";
 
-    Get();
+    GetM();
 
-    function Get() {
-        fetch(urlGet)
+    function GetM() {
+        fetch(urlGetM)
             .then((res) => {
                 return res.text();
             })
             .then((data) => {
-                document.getElementById("List").innerHTML = data;
+                document.getElementById("ListM").innerHTML = data;
             });
     }
 
-    url = "@Url.Content("~/Alumnos/DeleteAlumno")";
+    urlM = "@Url.Content("~/Materia/DeleteMateria")";
 
-    function Delete(id) {
-        fetch(url, {
+    function DeleteM(id) {
+        fetch(urlM, {
             method: "POST",
             body: JSON.stringify({
                 idMateria: id,
@@ -47,7 +48,7 @@
             if (data != "1") {
                 alert(data)
             } else {
-                document.location.href= "@Url.Content("~/Alumnos")"
+                document.location.href= "@Url.Content("~/Materia")"
             }
         })
     }

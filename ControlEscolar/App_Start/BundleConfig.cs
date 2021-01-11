@@ -31,6 +31,7 @@ namespace ControlEscolar
                         "~/Scripts/sweetalert.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/login.css",
                       "~/Content/bootstrap.css",
                       "~/Content/jquery.datetimepicker.css",
                       "~/Content/sweetalert.css",

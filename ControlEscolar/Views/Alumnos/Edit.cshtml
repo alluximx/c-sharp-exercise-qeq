@@ -5,32 +5,52 @@
 }
 
 <h2>Actualiza Alumno</h2>
+<!DOCTYPE html>
 
-<form>
-    <div class="row">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+
+    <div class="form-horizontal">
         @Html.HiddenFor(d => d.IdAlumno, new { id = "idAlumno" })
         <div class="form-group">
-            @Html.LabelFor(d => d.Nombre)
-            @Html.TextBoxFor(d => d.Nombre, new { id = "nombre" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(d => d.ApellidoPaterno)
-            @Html.TextBoxFor(d => d.ApellidoPaterno, new { id = "apellidoPaterno" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(d => d.ApellidoMaterno)
-            @Html.TextBoxFor(d => d.ApellidoMaterno, new { id = "apellidoMaterno" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(d => d.Contrasenia)
-            @Html.TextBoxFor(d => d.Contrasenia, new { id = "contrasenia" })
+            @Html.LabelFor(d => d.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.Nombre, htmlAttributes: new { @id = "nombre", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Nombre, "", new { @class = "text-danger" })
+            </div>
         </div>
 
-        <input type="button" value="Guardar" onclick="Edit()" />
+        <div class="form-group">
+            @Html.LabelFor(d => d.ApellidoPaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.ApellidoPaterno, htmlAttributes: new { @id = "apellidoPaterno", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ApellidoPaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(d => d.ApellidoMaterno, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.ApellidoMaterno, htmlAttributes: new { @id = "apellidoMaterno", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ApellidoMaterno, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(d => d.Contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(d => d.Contrasenia, htmlAttributes: new { @type = "password", @id = "contrasenia", @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Contrasenia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input type="button" value="Guardar" onclick="Edit()" class="btn btn-primary" />
     </div>
-</form>
 
-<script>
+    <script>
     var url = "@Url.Content("~/Alumnos/UpdateAlumno")";
     function Edit() {
         fetch(url, {
@@ -60,4 +80,6 @@
             }
         })
     }
-</script>
+    </script>
+</body>
+</html>

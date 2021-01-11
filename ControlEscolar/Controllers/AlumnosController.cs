@@ -1,10 +1,10 @@
-﻿using ControlEscolar.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ControlEscolar.Models;
 
 namespace ControlEscolar.Controllers
 {
@@ -65,6 +65,7 @@ namespace ControlEscolar.Controllers
         public ActionResult Edit(int id)
         {
             AlumnoModel model = new AlumnoModel();
+
             try
             {
                 var alumno = alumnos.GetAlumnoId(id);
@@ -84,8 +85,9 @@ namespace ControlEscolar.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateAlumno(AlumnoModel a)
+        public ActionResult UpdateAlumno([Bind(Exclude = "Usuario")] AlumnoModel a)
         {
+
             try
             {
                 alumnos.UpdateAlumno(a.IdAlumno, a.Nombre, a.ApellidoPaterno, a.ApellidoMaterno, a.Contrasenia);
@@ -95,7 +97,7 @@ namespace ControlEscolar.Controllers
 
                 throw;
             }
-            
+
             return Content("1");
         }
 

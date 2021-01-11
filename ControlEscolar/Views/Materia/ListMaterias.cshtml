@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ControlEscolar.Models.MateriaModel>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+    </tr>
+
+    @foreach (System.Data.DataRow item in ViewBag.materias.Rows)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item["nombre"])
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item["costo"])
+            </td>
+            <td>
+                <input type="button" onclick="document.location.href='@Url.Content("~/Materia/Edit/?Id="+ item["idMateria"])'" value="Editar" class="btn btn-success" /> |
+                <input type="button" onclick="DeleteM(@item["idMateria"])" value="Eliminar" class="btn btn-danger" />
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ControlEscolar.Models.MateriaModel>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (System.Data.DataRow item in ViewBag.materiasByAlumno.Rows)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item["nombre"])
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item["costo"])
+            </td>
+            <td>
+                <input type="button" onclick="DeleteMateria(@item["idMateria"])" value="Baja" class="btn btn-danger" />
+            </td>
+        </tr>
+    }
+</table>
+<br />
+    @foreach (System.Data.DataRow ele in ViewBag.total.Rows)
+    {
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Total: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DisplayFor(modelItem => ele["Total"])
+            </div>
+        </div>
+    }
+
+
+

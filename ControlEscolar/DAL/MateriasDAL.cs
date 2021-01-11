@@ -14,15 +14,15 @@ namespace ControlEscolar.DAL
     {
         static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["conn"].ConnectionString);
         
-        public void InsertMateria(MateriaModel mat)
+        public void InsertMateria(string nombre, decimal costo)
         {
             try
             {
                 string Query = "InsertMateria";
                 SqlCommand cmd = new SqlCommand(Query, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nombre", mat.Nombre);
-                cmd.Parameters.AddWithValue("@costo", mat.Costo);
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@costo", costo);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -37,16 +37,16 @@ namespace ControlEscolar.DAL
             }
         }//INSERT
 
-        public void UpdateMateria(MateriaModel mat)
+        public void UpdateMateria(int idMateria, string nombre, decimal costo)
         {
             try
             {
                 string Query = "UpdateMateria";
                 SqlCommand cmd = new SqlCommand(Query, conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idMateria", mat.IdMateria);
-                cmd.Parameters.AddWithValue("@nombre", mat.Nombre);
-                cmd.Parameters.AddWithValue("@costo", mat.Costo);
+                cmd.Parameters.AddWithValue("@idMateria", idMateria);
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@costo", costo);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -87,7 +87,7 @@ namespace ControlEscolar.DAL
         {
             try
             {
-                string Query = "GetMateriaById";
+                string Query = "GetMateriasById";
                 SqlCommand cmd = new SqlCommand(Query, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -135,5 +135,122 @@ namespace ControlEscolar.DAL
             }
         }//GET ALL MATERIAS
 
+        public List<MateriaModel> GetMateriasIns()
+        {
+            string Query = "GetMaterias";
+            SqlCommand cmd = new SqlCommand(Query, conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DataSet dsMaterias = new DataSet();
+
+            try
+            {
+                adapter.Fill(dsMaterias);
+
+                List<MateriaModel> LstMaterias = new List<MateriaModel>();
+
+                foreach (DataRow dr in dsMaterias.Tables[0].Rows)
+                {
+                    LstMaterias.Add(new MateriaModel(dr));
+                }
+
+                return LstMaterias;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }//GET ALL MATERIAS
+
+        public DataSet GetMateriasByAlumnoId(int idAlumno)
+        {
+            string Query = "GetMateriasByAlumnoId";
+            SqlCommand cmd = new SqlCommand(Query, conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
+
+            DataSet dsMaterias = new DataSet();
+
+            try
+            {
+                adapter.Fill(dsMaterias);
+                return dsMaterias;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }//GET MATERIAS BY ALUMNO ID
+
+        public DataSet SumCostos(int idAlumno)
+        {
+
+            string Query = "SumCostos";
+            SqlCommand cmd = new SqlCommand(Query, conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
+
+            DataSet dsTotal = new DataSet();
+
+            try
+            {
+                adapter.Fill(dsTotal);
+                return dsTotal;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }//GET MATERIAS BY ALUMNO ID
+
+        public void SaveInscripcion(int idAlumno, int idMateria)
+        {
+            try
+            {
+                string Query = "InsertInscripcion";
+                SqlCommand cmd = new SqlCommand(Query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idAlumno", idAlumno);
+                cmd.Parameters.AddWithValue("@idMateria", idMateria);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void DeleteInscripcion(int idMateria)
+        {
+            try
+            {
+                string Query = "DeleteInscripcion";
+                SqlCommand cmd = new SqlCommand(Query, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idMateria", idMateria);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }//DELETE INSCRIPCION
     }
 }
