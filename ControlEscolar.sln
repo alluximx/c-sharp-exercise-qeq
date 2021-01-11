@@ -9,6 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{2C
 	ProjectSection(SolutionItems) = preProject
 		DataBase\ControlEscolar.bak = DataBase\ControlEscolar.bak
 		DataBase\ControlEscolar.sql = DataBase\ControlEscolar.sql
+		DataBase\StoredProcedures.sql = DataBase\StoredProcedures.sql
+		DataBase\Tablas.sql = DataBase\Tablas.sql
+		DataBase\TablasDatos.sql = DataBase\TablasDatos.sql
 	EndProjectSection
 EndProject
 Global
