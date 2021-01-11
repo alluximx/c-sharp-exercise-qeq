@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlEscolar", "ControlEscolar\ControlEscolar.csproj", "{A7DFAC03-1A29-4DA1-BD3D-3D0EEFC94029}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{2C6F6140-B111-48A3-B3E2-2455F99FB760}"
+	ProjectSection(SolutionItems) = preProject
+		DataBase\ControlEscolar.bak = DataBase\ControlEscolar.bak
+		DataBase\ControlEscolar.sql = DataBase\ControlEscolar.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
